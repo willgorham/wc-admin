@@ -356,11 +356,11 @@ export function getAllowedIntervalsForQuery( query ) {
 	if ( 'custom' === query.period ) {
 		const { primary } = getCurrentDates( query );
 		const differenceInDays = getDateDifferenceInDays( primary.before, primary.after );
-		if ( differenceInDays > 364 ) {
+		if ( differenceInDays > 363 ) {
 			allowed = [ 'day', 'week', 'month', 'quarter', 'year' ];
-		} else if ( differenceInDays > 90 ) {
-			allowed = [ 'day', 'week', 'month', 'quater' ];
-		} else if ( differenceInDays > 27 ) {
+		} else if ( differenceInDays > 88 ) {
+			allowed = [ 'day', 'week', 'month', 'quarter' ];
+		} else if ( differenceInDays > 26 ) {
 			allowed = [ 'day', 'week', 'month' ];
 		} else if ( differenceInDays > 6 ) {
 			allowed = [ 'day', 'week' ];
