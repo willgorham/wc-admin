@@ -356,39 +356,39 @@ export function getAllowedIntervalsForQuery( query ) {
 	if ( 'custom' === query.period ) {
 		const { primary } = getCurrentDates( query );
 		const differenceInDays = getDateDifferenceInDays( primary.before, primary.after );
-		if ( differenceInDays > 728 ) {
+		if ( differenceInDays > 364 ) {
 			allowed = [ 'day', 'week', 'month', 'quarter', 'year' ];
-		} else if ( differenceInDays > 364 ) {
-			allowed = [ 'day', 'week', 'month', 'quarter' ];
 		} else if ( differenceInDays > 90 ) {
+			allowed = [ 'day', 'week', 'month', 'quater' ];
+		} else if ( differenceInDays > 27 ) {
 			allowed = [ 'day', 'week', 'month' ];
-		} else if ( differenceInDays > 7 ) {
+		} else if ( differenceInDays > 6 ) {
 			allowed = [ 'day', 'week' ];
 		} else if ( differenceInDays > 1 && differenceInDays <= 7 ) {
 			allowed = [ 'day' ];
 		} else {
-			allowed = [ 'day' ];
+			allowed = [ 'hour', 'day' ];
 		}
 	} else {
 		switch ( query.period ) {
 			case 'week':
 			case 'last_week':
-				allowed = [ 'day' ];
+				allowed = [ 'day', 'week' ];
 				break;
 			case 'month':
 			case 'last_month':
-				allowed = [ 'day', 'week' ];
+				allowed = [ 'day', 'week', 'month' ];
 				break;
 			case 'quarter':
 			case 'last_quarter':
-				allowed = [ 'day', 'week', 'month' ];
+				allowed = [ 'day', 'week', 'month', 'quarter' ];
 				break;
 			case 'year':
 			case 'last_year':
-				allowed = [ 'day', 'week', 'month', 'quarter' ];
+				allowed = [ 'day', 'week', 'month', 'quarter', 'year' ];
 				break;
 			default:
-				allowed = [ 'day' ];
+				allowed = [ 'hour', 'day' ];
 				break;
 		}
 	}
