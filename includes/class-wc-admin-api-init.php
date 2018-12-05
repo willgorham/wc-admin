@@ -264,6 +264,8 @@ class WC_Admin_Api_Init {
 				'report-variations'     => 'WC_Admin_Reports_Variations_Data_Store',
 				'report-products-stats' => 'WC_Admin_Reports_Products_Stats_Data_Store',
 				'report-categories'     => 'WC_Admin_Reports_Categories_Data_Store',
+				'report-coupons'        => 'WC_Admin_Reports_Coupons_Data_Store',
+				'report-coupons-stats'  => 'WC_Admin_Reports_Coupons_Stats_Store',
 				'admin-note'            => 'WC_Admin_Notes_Data_Store',
 			)
 		);
