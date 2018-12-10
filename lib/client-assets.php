@@ -139,6 +139,8 @@ function format_order_statuses( $statuses ) {
  * Output the wcSettings global before printing any script tags.
  */
 function wc_admin_print_script_settings() {
+	global $wp_locale;
+
 	// Add Tracks script to the DOM if tracking is opted in, and Jetpack is installed/activated.
 	$tracking_enabled = 'yes' === get_option( 'woocommerce_allow_tracking', 'no' );
 	$tracking_script  = '';
@@ -171,6 +173,10 @@ function wc_admin_print_script_settings() {
 		'stockStatuses'    => wc_get_product_stock_status_options(),
 		'siteTitle'        => get_bloginfo( 'name' ),
 		'trackingEnabled'  => $tracking_enabled,
+		'l10n'             => array(
+			'userLocale'    => get_user_locale(),
+			'weekdaysShort' => array_values( $wp_locale->weekday_abbrev ),
+		),
 	);
 	?>
 	<script type="text/javascript">
