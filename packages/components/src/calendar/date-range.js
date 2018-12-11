@@ -147,7 +147,7 @@ class DateRange extends Component {
 						error={ beforeError }
 						describedBy={ sprintf(
 							__(
-								"Date input describing a selected date range's end date in format %s",
+								'Date input describing a selected date range\'s end date in format %s',
 								'wc-admin'
 							),
 							shortDateFormat

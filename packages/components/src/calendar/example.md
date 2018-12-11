@@ -1,5 +1,5 @@
 ```jsx
-import { DateRange } from '@woocommerce/components';
+import { DateRange, DatePicker } from '@woocommerce/components';
 import moment from 'moment';
 
 const dateFormat = 'MM/DD/YYYY';
@@ -15,16 +15,32 @@ const MyDateRange =  withState( {
 	}
 
 	return (
-		<DateRange
-			after={ after }
-			afterText={ afterText }
-			before={ before }
-			beforeText={ beforeText }
-			onUpdate={ onUpdate }
-			shortDateFormat={ dateFormat }
-			focusedInput="startDate"
-			invalidDays="none"
-		/>
+		<div>
+			<H>Date Range Picker</H>
+			<Section component={ false }>
+				<DateRange
+					after={ after }
+					afterText={ afterText }
+					before={ before }
+					beforeText={ beforeText }
+					onUpdate={ onUpdate }
+					shortDateFormat={ dateFormat }
+					focusedInput="startDate"
+					invalidDays="none"
+				/>
+			</Section>
+	
+			<H>Date Picker</H>
+			<Section component={ false }>
+				<DatePicker
+					date={ after }
+					text={ afterText }
+					onInputChange={ p => console.log(p) }
+					dateFormat={ dateFormat }
+					invalidDays="none"
+				/>
+			</Section>
+		</div>
 	)
 } );
 ```
