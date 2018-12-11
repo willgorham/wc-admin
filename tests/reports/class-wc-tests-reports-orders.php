@@ -1,10 +1,12 @@
 <?php
-
 /**
  * Reports order stats tests.
  *
  * @package WooCommerce\Tests\Orders
- * @todo Finish up unit testing to verify bug-free order reports.
+ */
+
+/**
+ * Class WC_Tests_Reports_Orders
  */
 class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 
@@ -1551,7 +1553,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'Product includes, negative filter for 2 product: ' . $wpdb->last_query );
 
 		// Combinations: match all
-		// status_is + product_includes
+		// status_is + product_includes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -1623,7 +1625,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is + coupon_includes
+		// status_is + coupon_includes.
 		$query_args = array(
 			'after'           => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'          => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -1699,7 +1701,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// product_includes + coupon_includes
+		// product_includes + coupon_includes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -1771,7 +1773,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is + product_includes + coupon_includes
+		// status_is + product_includes + coupon_includes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -1846,7 +1848,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is + status_is_not + product_includes
+		// status_is + status_is_not + product_includes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -1925,7 +1927,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is + status_is_not + product_includes + product_excludes
+		// status_is + status_is_not + product_includes + product_excludes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -2005,7 +2007,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is + status_is_not + product_includes + product_excludes + coupon_includes
+		// status_is + status_is_not + product_includes + product_excludes + coupon_includes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -2087,7 +2089,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is + status_is_not + product_includes + product_excludes + coupon_includes + coupon_excludes
+		// status_is + status_is_not + product_includes + product_excludes + coupon_includes + coupon_excludes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -2174,7 +2176,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
 		// Combinations: match any
-		// status_is + status_is_not, all orders
+		// status_is + status_is_not, all orders.
 		$query_args = array(
 			'after'         => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'        => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -2251,7 +2253,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is OR product_includes
+		// status_is OR product_includes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -2328,7 +2330,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is OR coupon_includes
+		// status_is OR coupon_includes.
 		$query_args = array(
 			'after'           => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'          => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -2405,7 +2407,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is OR coupon_excludes
+		// status_is OR coupon_excludes.
 		$query_args = array(
 			'after'           => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'          => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -2482,7 +2484,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// product_includes OR coupon_includes
+		// product_includes OR coupon_includes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -2559,7 +2561,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is OR product_includes OR coupon_includes
+		// status_is OR product_includes OR coupon_includes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -2639,7 +2641,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is OR status_is_not OR product_includes
+		// status_is OR status_is_not OR product_includes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -2722,7 +2724,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is OR status_is_not OR product_includes OR product_excludes
+		// status_is OR status_is_not OR product_includes OR product_excludes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -2805,7 +2807,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is OR status_is_not OR product_includes OR product_excludes OR coupon_includes
+		// status_is OR status_is_not OR product_includes OR product_excludes OR coupon_includes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
@@ -2891,7 +2893,7 @@ class WC_Tests_Reports_Orders extends WC_Unit_Test_Case {
 		);
 		$this->assertEquals( $expected_stats, json_decode( json_encode( $data_store->get_data( $query_args ) ), true ), 'No filters' );
 
-		// status_is OR status_is_not OR product_includes OR product_excludes OR coupon_includes OR coupon_excludes
+		// status_is OR status_is_not OR product_includes OR product_excludes OR coupon_includes OR coupon_excludes.
 		$query_args = array(
 			'after'            => $current_hour->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
 			'before'           => $now->format( WC_Admin_Reports_Interval::$sql_datetime_format ),
