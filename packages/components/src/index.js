@@ -7,6 +7,8 @@ import 'react-dates/initialize';
 
 export { default as AdvancedFilters } from './filters/advanced';
 export { default as AnimationSlider } from './animation-slider';
+export { default as Chart } from './chart';
+export { default as ChartPlaceholder } from './chart/placeholder';
 export { default as Card } from './card';
 export { default as Count } from './count';
 export { default as CompareFilter } from './filters/compare';
@@ -36,7 +38,7 @@ export { default as SegmentedSelection } from './segmented-selection';
 export { default as SplitButton } from './split-button';
 export { default as SummaryList } from './summary';
 export { default as SummaryListPlaceholder } from './summary/placeholder';
-export { default as SummaryNumber } from './summary/item';
+export { default as SummaryNumber } from './summary/number';
 export { default as Table } from './table/table';
 export { default as TableCard } from './table';
 export { default as EmptyTable } from './table/empty';

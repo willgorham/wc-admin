@@ -2,9 +2,9 @@
 /**
  * External dependencies
  */
+import { applyFilters } from '@wordpress/hooks';
 import { Component } from '@wordpress/element';
 import { compose } from '@wordpress/compose';
-import { withSelect } from '@wordpress/data';
 import { get, orderBy } from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -19,6 +19,9 @@ import { onQueryChange } from '@woocommerce/navigation';
  */
 import ReportError from 'analytics/components/report-error';
 import { getReportChartData, getReportTableData } from 'store/reports/utils';
+import withSelect from 'wc-api/with-select';
+
+const TABLE_FILTER = 'woocommerce_admin_report_table';
 
 class ReportTable extends Component {
 	render() {
@@ -45,13 +48,18 @@ class ReportTable extends Component {
 		}
 
 		const isRequesting = tableData.isRequesting || primaryData.isRequesting;
-
-		const headers = getHeadersContent();
 		const orderedItems = orderBy( items.data, query.orderby, query.order );
-		const ids = itemIdField ? orderedItems.map( item => item[ itemIdField ] ) : null;
-		const rows = getRowsContent( orderedItems );
 		const totals = get( primaryData, [ 'data', 'totals' ], null );
-		const summary = getSummary ? getSummary( totals ) : null;
+		const totalCount = items.totalCount || 0;
+		const { headers, ids, rows, summary } = applyFilters( TABLE_FILTER, {
+			endpoint: endpoint,
+			headers: getHeadersContent(),
+			orderedItems: orderedItems,
+			ids: itemIdField ? orderedItems.map( item => item[ itemIdField ] ) : null,
+			rows: getRowsContent( orderedItems ),
+			totals: totals,
+			summary: getSummary ? getSummary( totals, totalCount ) : null,
+		} );
 
 		return (
 			<TableCard
@@ -63,7 +71,7 @@ class ReportTable extends Component {
 				rows={ rows }
 				rowsPerPage={ parseInt( query.per_page ) }
 				summary={ summary }
-				totalRows={ items.totalCount || 0 }
+				totalRows={ totalCount }
 				{ ...tableProps }
 			/>
 		);
@@ -110,7 +118,7 @@ ReportTable.propTypes = {
 };
 
 ReportTable.defaultProps = {
-	tableData: null,
+	tableData: {},
 	tableQuery: {},
 };
 

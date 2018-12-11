@@ -7,7 +7,7 @@ import { Button } from '@wordpress/components';
 import { Component, Fragment } from '@wordpress/element';
 import { compose } from '@wordpress/compose';
 import Gridicon from 'gridicons';
-import { withSelect } from '@wordpress/data';
+import withSelect from 'wc-api/with-select';
 
 /**
  * Internal dependencies
@@ -89,10 +89,11 @@ class InboxPanel extends Component {
 
 export default compose(
 	withSelect( select => {
-		const { getNotes, isGetNotesError, isGetNotesRequesting } = select( 'wc-admin' );
+		const { getNotes, isGetNotesError, isGetNotesRequesting } = select( 'wc-api' );
 		const inboxQuery = {
 			page: 1,
 			per_page: QUERY_DEFAULTS.pageSize,
+			type: 'info,warning',
 		};
 
 		const notes = getNotes( inboxQuery );

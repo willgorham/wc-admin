@@ -106,7 +106,6 @@ class OrdersReportTable extends Component {
 		const { query } = this.props;
 		const currentInterval = getIntervalForQuery( query );
 		const { tableFormat } = getDateFormatsForInterval( currentInterval );
-
 		return map( tableData, row => {
 			const {
 				date,
@@ -187,7 +186,7 @@ class OrdersReportTable extends Component {
 		}
 		return [
 			{
-				label: _n( 'order', 'orders', totals.num_items_sold, 'wc-admin' ),
+				label: _n( 'order', 'orders', totals.orders_count, 'wc-admin' ),
 				value: numberFormat( totals.orders_count ),
 			},
 			{
