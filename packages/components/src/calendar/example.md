@@ -19,7 +19,7 @@ const MyDateRange =  withState( {
 	function onDatePickerUpdate( { date, text, error } ) {
     		setState( { 
     			after: date, 
-    			afterText:text,
+    			afterText: text,
     			afterError: null,
     		} );
     	}

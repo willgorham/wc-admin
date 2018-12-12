@@ -20,12 +20,14 @@ import { TAB } from '@wordpress/keycodes';
  */
 import DateInput from './input';
 import phrases from './phrases';
+import { toMoment } from '@woocommerce/date';
 
 class DatePicker extends Component {
 	constructor( props ) {
 		super( props );
 
 		this.onDateChange = this.onDateChange.bind( this );
+		this.onInputChange = this.onInputChange.bind( this );
 	}
 
 	handleKeyDown( isOpen, onToggle, { keyCode } ) {
@@ -50,6 +52,20 @@ class DatePicker extends Component {
 		onToggle();
 	}
 
+	onInputChange( event ) {
+		const value = event.target.value;
+		const { dateFormat } = this.props;
+		const date = toMoment( dateFormat, value );
+		// @TODO: add validation
+		const error = null;
+
+		this.props.onUpdate( {
+			date,
+			text: value,
+			error: value.length > 0 ? error : null,
+		} );
+	}
+
 	render() {
 		const { text, onUpdate, dateFormat, label, error } = this.props;
 		return (
@@ -61,7 +77,7 @@ class DatePicker extends Component {
 					renderToggle={ ( { isOpen, onToggle } ) => (
 						<DateInput
 							value={ text }
-							onChange={ onUpdate }
+							onChange={ this.onInputChange }
 							dateFormat={ dateFormat }
 							label={ label }
 							error={ error }
