@@ -51,6 +51,17 @@ add_action( 'save_post', 'wc_admin_order_product_lookup_entry', 10, 1 );
 add_action( 'clean_post_cache', 'wc_admin_order_product_lookup_entry', 10, 1 );
 
 /**
+ * Runs the sync function for order product lookup table on refund delete.
+ *
+ * @param int $refund_id Refund ID.
+ * @param int $order_id Order ID.
+ */
+function wc_admin_order_product_sync_on_refund_delete( $refund_id, $order_id ) {
+	wc_admin_order_product_lookup_entry( $order_id );
+}
+add_action( 'woocommerce_refund_deleted', 'wc_admin_order_product_sync_on_refund_delete', 10, 2 );
+
+/**
  * Make an entry in the wc_order_tax_lookup table for an order.
  *
  * @since 3.5.0
