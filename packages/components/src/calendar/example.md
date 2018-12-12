@@ -9,10 +9,20 @@ const MyDateRange =  withState( {
 	afterText: '09/10/2018',
 	before: moment( '2018-09-20' ),
 	beforeText: '09/20/2018',
+	afterError: null,
+	beforeError: null,
 } )( ( { after, afterText, before, beforeText, setState } ) => {
 	function onRangeUpdate( { after, afterText, before, beforeText } ) {
 		setState( { after, afterText, before, beforeText } );
 	}
+	
+	function onDatePickerUpdate( { date, text, error } ) {
+    		setState( { 
+    			after: date, 
+    			afterText:text,
+    			afterError: null,
+    		} );
+    	}
 
 	return (
 		<div>
@@ -35,10 +45,11 @@ const MyDateRange =  withState( {
 				<DatePicker
 					date={ after }
 					text={ afterText }
-					onInputChange={ p => console.log(p) }
+					onUpdate={ onDatePickerUpdate }
 					dateFormat={ dateFormat }
 					invalidDays="none"
 					label="hello world"
+					onUpdate={ onDatePickerUpdate }
 				/>
 			</Section>
 		</div>

@@ -16,17 +16,18 @@ import { partial } from 'lodash';
 import { TAB } from '@wordpress/keycodes';
 
 /**
- * WooCommerce dependencies
- */
-import { validateDateInputForRange } from '@woocommerce/date';
-
-/**
  * Internal dependencies
  */
 import DateInput from './input';
 import phrases from './phrases';
 
 class DatePicker extends Component {
+	constructor( props ) {
+		super( props );
+
+		this.onDateChange = this.onDateChange.bind( this );
+	}
+
 	handleKeyDown( isOpen, onToggle, { keyCode } ) {
 		if ( TAB === keyCode && isOpen ) {
 			onToggle();
@@ -39,8 +40,18 @@ class DatePicker extends Component {
 		}
 	}
 
+	onDateChange( onToggle, date ) {
+		const { onUpdate, dateFormat } = this.props;
+		onUpdate( {
+			date,
+			text: date ? date.format( dateFormat ) : '',
+			error: null,
+		} );
+		onToggle();
+	}
+
 	render() {
-		const { text, onInputChange, dateFormat, label, error } = this.props;
+		const { text, onUpdate, dateFormat, label, error } = this.props;
 		return (
 			<Fragment>
 				<Dropdown
@@ -50,7 +61,7 @@ class DatePicker extends Component {
 					renderToggle={ ( { isOpen, onToggle } ) => (
 						<DateInput
 							value={ text }
-							onChange={ onInputChange }
+							onChange={ onUpdate }
 							dateFormat={ dateFormat }
 							label={ label }
 							error={ error }
@@ -70,10 +81,7 @@ class DatePicker extends Component {
 							hideKeyboardShortcutsPanel
 							noBorder
 							firstDayOfWeek={ Number( wcSettings.date.dow ) }
-							onDayClick={ a => {
-								console.log( a );
-								onToggle();
-							} }
+							onDayClick={ partial( this.onDateChange, onToggle ) }
 						/>
 					) }
 				/>
