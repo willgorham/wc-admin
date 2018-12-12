@@ -5,13 +5,9 @@
 import 'core-js/fn/object/assign';
 import 'core-js/fn/array/from';
 import { __, sprintf } from '@wordpress/i18n';
-import classnames from 'classnames';
 import { Component, Fragment } from '@wordpress/element';
-import { DayPicker, isInclusivelyAfterDay, isInclusivelyBeforeDay } from 'react-dates';
-import moment from 'moment';
-import PropTypes from 'prop-types';
-import { withViewportMatch } from '@wordpress/viewport';
-import { Dropdown, Popover } from '@wordpress/components';
+import { DayPicker } from 'react-dates';
+import { Dropdown } from '@wordpress/components';
 import { partial } from 'lodash';
 import { TAB } from '@wordpress/keycodes';
 
@@ -67,7 +63,7 @@ class DatePicker extends Component {
 	}
 
 	render() {
-		const { text, onUpdate, dateFormat, label, error } = this.props;
+		const { text, dateFormat, label, error } = this.props;
 		return (
 			<Fragment>
 				<Dropdown
