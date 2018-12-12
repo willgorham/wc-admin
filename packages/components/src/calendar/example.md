@@ -17,13 +17,13 @@ const MyDateRange =  withState( {
 	}
 	
 	function onDatePickerUpdate( { date, text, error } ) {
-    		setState( { 
-    			after: date, 
-    			afterText: text,
-    			afterError: null,
-    		} );
-    	}
-
+		setState( { 
+			after: date, 
+			afterText: text,
+			afterError: null,
+		} );
+	}
+	
 	return (
 		<div>
 			<H>Date Range Picker</H>

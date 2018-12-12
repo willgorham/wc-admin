@@ -6,7 +6,7 @@ import 'core-js/fn/object/assign';
 import 'core-js/fn/array/from';
 import { __, sprintf } from '@wordpress/i18n';
 import { Component, Fragment } from '@wordpress/element';
-import { DayPicker } from 'react-dates';
+import { DayPickerSingleDateController } from 'react-dates';
 import { Dropdown } from '@wordpress/components';
 import { partial } from 'lodash';
 import { TAB } from '@wordpress/keycodes';
@@ -63,7 +63,7 @@ class DatePicker extends Component {
 	}
 
 	render() {
-		const { text, dateFormat, label, error } = this.props;
+		const { date, text, dateFormat, label, error } = this.props;
 		return (
 			<Fragment>
 				<Dropdown
@@ -88,12 +88,14 @@ class DatePicker extends Component {
 						/>
 					) }
 					renderContent={ ( { onToggle } ) => (
-						<DayPicker
+						<DayPickerSingleDateController
+							date={ date }
 							phrases={ phrases }
 							hideKeyboardShortcutsPanel
 							noBorder
+							focused={ true }
 							firstDayOfWeek={ Number( wcSettings.date.dow ) }
-							onDayClick={ partial( this.onDateChange, onToggle ) }
+							onDateChange={ partial( this.onDateChange, onToggle ) }
 						/>
 					) }
 				/>
