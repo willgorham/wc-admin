@@ -10,7 +10,7 @@ const MyDateRange =  withState( {
 	before: moment( '2018-09-20' ),
 	beforeText: '09/20/2018',
 } )( ( { after, afterText, before, beforeText, setState } ) => {
-	function onUpdate( { after, afterText, before, beforeText } ) {
+	function onRangeUpdate( { after, afterText, before, beforeText } ) {
 		setState( { after, afterText, before, beforeText } );
 	}
 
@@ -23,7 +23,7 @@ const MyDateRange =  withState( {
 					afterText={ afterText }
 					before={ before }
 					beforeText={ beforeText }
-					onUpdate={ onUpdate }
+					onUpdate={ onRangeUpdate }
 					shortDateFormat={ dateFormat }
 					focusedInput="startDate"
 					invalidDays="none"
@@ -38,6 +38,7 @@ const MyDateRange =  withState( {
 					onInputChange={ p => console.log(p) }
 					dateFormat={ dateFormat }
 					invalidDays="none"
+					label="hello world"
 				/>
 			</Section>
 		</div>

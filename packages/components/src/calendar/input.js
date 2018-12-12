@@ -7,7 +7,7 @@ import classnames from 'classnames';
 import { uniqueId } from 'lodash';
 import PropTypes from 'prop-types';
 
-const DateInput = ( { value, onChange, dateFormat, label, describedBy, error, onFocus } ) => {
+const DateInput = ( { value, onChange, dateFormat, label, describedBy, error, onFocus, onKeyDown } ) => {
 	const classes = classnames( 'woocommerce-calendar__input', {
 		'is-empty': value.length === 0,
 		'is-error': error,
@@ -25,6 +25,7 @@ const DateInput = ( { value, onChange, dateFormat, label, describedBy, error, on
 				aria-describedby={ `${ id }-message` }
 				placeholder={ dateFormat.toLowerCase() }
 				onFocus={ onFocus }
+				onKeyDown={ onKeyDown }
 			/>
 			{ error && (
 				<Popover

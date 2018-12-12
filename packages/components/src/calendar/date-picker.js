@@ -12,6 +12,8 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { withViewportMatch } from '@wordpress/viewport';
 import { Dropdown, Popover } from '@wordpress/components';
+import { partial } from 'lodash';
+import { TAB } from '@wordpress/keycodes';
 
 /**
  * WooCommerce dependencies
@@ -25,6 +27,18 @@ import DateInput from './input';
 import phrases from './phrases';
 
 class DatePicker extends Component {
+	handleKeyDown( isOpen, onToggle, { keyCode } ) {
+		if ( TAB === keyCode && isOpen ) {
+			onToggle();
+		}
+	}
+
+	handleFocus( isOpen, onToggle ) {
+		if ( ! isOpen ) {
+			onToggle();
+		}
+	}
+
 	render() {
 		const { text, onInputChange, dateFormat, label, error } = this.props;
 		return (
@@ -44,8 +58,10 @@ class DatePicker extends Component {
 								__( 'Date input describing a selected date in format %s', 'wc-admin' ),
 								dateFormat
 							) }
-							onFocus={ onToggle }
+							onFocus={ partial( this.handleFocus, isOpen, onToggle ) }
 							aria-expanded={ isOpen }
+							focusOnMount={ false }
+							onKeyDown={ partial( this.handleKeyDown, isOpen, onToggle ) }
 						/>
 					) }
 					renderContent={ ( { onToggle } ) => (
