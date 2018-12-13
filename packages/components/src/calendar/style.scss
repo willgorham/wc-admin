@@ -170,5 +170,11 @@
 			z-index: 1;
 			top: -6px;
 		}
+
+		&:not(.no-arrow):not(.is-mobile).is-top::after {
+			border-top-color: $core-grey-dark-400;
+			z-index: 1;
+			top: 0px;
+		}
 	}
 }
