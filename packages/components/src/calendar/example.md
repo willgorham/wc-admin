@@ -11,9 +11,10 @@ const MyDateRange =  withState( {
 	beforeText: '',
 	afterError: null,
 	beforeError: null,
-} )( ( { after, afterText, before, beforeText, afterError, beforeError, setState } ) => {
-	function onRangeUpdate( { after, afterText, before, beforeText } ) {
-		setState( { after, afterText, before, beforeText } );
+	focusedInput: 'startDate',
+} )( ( { after, afterText, before, beforeText, afterError, beforeError, focusedInput, setState } ) => {
+	function onRangeUpdate( update ) {
+		setState( update );
 	}
 	
 	function onDatePickerUpdate( { date, text, error } ) {
@@ -35,8 +36,8 @@ const MyDateRange =  withState( {
 					beforeText={ beforeText }
 					onUpdate={ onRangeUpdate }
 					shortDateFormat={ dateFormat }
-					focusedInput="startDate"
-					invalidDays="none"
+					focusedInput={ focusedInput }
+					invalidDays="future"
 				/>
 			</Section>
 	
@@ -51,6 +52,7 @@ const MyDateRange =  withState( {
 					invalidDays="none"
 					label="hello world"
 					onUpdate={ onDatePickerUpdate }
+					invalidDays="future"
 				/>
 			</Section>
 		</div>

@@ -17,6 +17,7 @@ import { TAB } from '@wordpress/keycodes';
 import DateInput from './input';
 import phrases from './phrases';
 import { toMoment } from '@woocommerce/date';
+import { getOutsideRange } from './utils';
 
 class DatePicker extends Component {
 	constructor( props ) {
@@ -63,7 +64,8 @@ class DatePicker extends Component {
 	}
 
 	render() {
-		const { date, text, dateFormat, label, error } = this.props;
+		const { date, text, dateFormat, label, error, invalidDays } = this.props;
+		const isOutsideRange = getOutsideRange( invalidDays );
 		return (
 			<Fragment>
 				<Dropdown
@@ -98,6 +100,7 @@ class DatePicker extends Component {
 								focused={ true }
 								firstDayOfWeek={ Number( wcSettings.date.dow ) }
 								onDateChange={ partial( this.onDateChange, onToggle ) }
+								isOutsideRange={ isOutsideRange }
 							/>
 						</div>
 					) }
