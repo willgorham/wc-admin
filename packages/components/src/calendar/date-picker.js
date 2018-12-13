@@ -18,6 +18,7 @@ import DateInput from './input';
 import phrases from './phrases';
 import { toMoment } from '@woocommerce/date';
 import { getOutsideRange } from './utils';
+import { H, Section } from '../section';
 
 class DatePicker extends Component {
 	constructor( props ) {
@@ -69,7 +70,6 @@ class DatePicker extends Component {
 		return (
 			<Fragment>
 				<Dropdown
-					expandOnMobile
 					position="bottom"
 					focusOnMount={ false }
 					renderToggle={ ( { isOpen, onToggle } ) => (
@@ -91,18 +91,23 @@ class DatePicker extends Component {
 						/>
 					) }
 					renderContent={ ( { onToggle } ) => (
-						<div className="woocommerce-calendar__react-dates">
-							<DayPickerSingleDateController
-								date={ date }
-								phrases={ phrases }
-								hideKeyboardShortcutsPanel
-								noBorder
-								focused={ true }
-								firstDayOfWeek={ Number( wcSettings.date.dow ) }
-								onDateChange={ partial( this.onDateChange, onToggle ) }
-								isOutsideRange={ isOutsideRange }
-							/>
-						</div>
+						<Section component={ false }>
+							<H className="woocommerce-calendar__date-picker-title">
+								{ __( 'select a date', 'wc-admin' ) }
+							</H>
+							<div className="woocommerce-calendar__react-dates">
+								<DayPickerSingleDateController
+									date={ date }
+									phrases={ phrases }
+									hideKeyboardShortcutsPanel
+									noBorder
+									focused={ true }
+									firstDayOfWeek={ Number( wcSettings.date.dow ) }
+									onDateChange={ partial( this.onDateChange, onToggle ) }
+									isOutsideRange={ isOutsideRange }
+								/>
+							</div>
+						</Section>
 					) }
 				/>
 			</Fragment>
