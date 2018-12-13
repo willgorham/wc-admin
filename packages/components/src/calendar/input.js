@@ -7,7 +7,17 @@ import classnames from 'classnames';
 import { uniqueId } from 'lodash';
 import PropTypes from 'prop-types';
 
-const DateInput = ( { value, onChange, dateFormat, label, describedBy, error, onFocus, onKeyDown } ) => {
+const DateInput = ( {
+	value,
+	onChange,
+	dateFormat,
+	label,
+	describedBy,
+	error,
+	onFocus,
+	onKeyDown,
+	errorPosition,
+} ) => {
 	const classes = classnames( 'woocommerce-calendar__input', {
 		'is-empty': value.length === 0,
 		'is-error': error,
@@ -31,7 +41,7 @@ const DateInput = ( { value, onChange, dateFormat, label, describedBy, error, on
 				<Popover
 					className="woocommerce-calendar__input-error"
 					focusOnMount={ false }
-					position="bottom center"
+					position={ errorPosition }
 				>
 					{ error }
 				</Popover>
@@ -51,11 +61,13 @@ DateInput.propTypes = {
 	label: PropTypes.string.isRequired,
 	describedBy: PropTypes.string.isRequired,
 	error: PropTypes.string,
+	errorPosition: PropTypes.string,
 	onFocus: PropTypes.func,
 };
 
 DateInput.defaultProps = {
 	onFocus: () => {},
-}
+	errorPosition: 'bottom center',
+};
 
 export default DateInput;

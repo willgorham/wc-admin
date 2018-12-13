@@ -53,7 +53,7 @@ class DatePicker extends Component {
 		const { dateFormat } = this.props;
 		const date = toMoment( dateFormat, value );
 		// @TODO: add validation
-		const error = null;
+		const error = date ? null : 'Invalid date';
 
 		this.props.onUpdate( {
 			date,
@@ -85,6 +85,7 @@ class DatePicker extends Component {
 							aria-expanded={ isOpen }
 							focusOnMount={ false }
 							onKeyDown={ partial( this.handleKeyDown, isOpen, onToggle ) }
+							errorPosition="top center"
 						/>
 					) }
 					renderContent={ ( { onToggle } ) => (

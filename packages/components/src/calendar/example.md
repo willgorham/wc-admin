@@ -5,13 +5,13 @@ import moment from 'moment';
 const dateFormat = 'MM/DD/YYYY';
 
 const MyDateRange =  withState( {
-	after: moment( '2018-09-10' ),
-	afterText: '09/10/2018',
-	before: moment( '2018-09-20' ),
-	beforeText: '09/20/2018',
+	after: null,
+	afterText: '',
+	before: null,
+	beforeText: '',
 	afterError: null,
 	beforeError: null,
-} )( ( { after, afterText, before, beforeText, setState } ) => {
+} )( ( { after, afterText, before, beforeText, afterError, beforeError, setState } ) => {
 	function onRangeUpdate( { after, afterText, before, beforeText } ) {
 		setState( { after, afterText, before, beforeText } );
 	}
@@ -20,7 +20,7 @@ const MyDateRange =  withState( {
 		setState( { 
 			after: date, 
 			afterText: text,
-			afterError: null,
+			afterError: error,
 		} );
 	}
 	
@@ -45,6 +45,7 @@ const MyDateRange =  withState( {
 				<DatePicker
 					date={ after }
 					text={ afterText }
+					error={ afterError } 
 					onUpdate={ onDatePickerUpdate }
 					dateFormat={ dateFormat }
 					invalidDays="none"

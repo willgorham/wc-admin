@@ -143,32 +143,32 @@
 }
 
 .woocommerce-filters-date__content {
-	.woocommerce-calendar__input-error {
-		display: none;
-
-		.components-popover__content {
-			background-color: $core-grey-dark-400;
-			color: $white;
-			padding: 0.5em;
-			border: none;
-		}
-
-		&.components-popover {
-			.components-popover__content {
-				min-width: 100px;
-				width: 100px;
-				text-align: center;
-			}
-
-			&:not(.no-arrow):not(.is-mobile).is-bottom::before {
-				border-bottom-color: $core-grey-dark-400;
-				z-index: 1;
-				top: -6px;
-			}
-		}
-	}
-
 	&.is-mobile .woocommerce-calendar__input-error .components-popover__content {
 		height: initial;
+	}
+}
+
+.woocommerce-calendar__input-error {
+	display: none;
+
+	.components-popover__content {
+		background-color: $core-grey-dark-400;
+		color: $white;
+		padding: 0.5em;
+		border: none;
+	}
+
+	&.components-popover {
+		.components-popover__content {
+			min-width: 100px;
+			width: 100px;
+			text-align: center;
+		}
+
+		&:not(.no-arrow):not(.is-mobile).is-bottom::before {
+			border-bottom-color: $core-grey-dark-400;
+			z-index: 1;
+			top: -6px;
+		}
 	}
 }
