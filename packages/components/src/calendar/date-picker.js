@@ -89,15 +89,17 @@ class DatePicker extends Component {
 						/>
 					) }
 					renderContent={ ( { onToggle } ) => (
-						<DayPickerSingleDateController
-							date={ date }
-							phrases={ phrases }
-							hideKeyboardShortcutsPanel
-							noBorder
-							focused={ true }
-							firstDayOfWeek={ Number( wcSettings.date.dow ) }
-							onDateChange={ partial( this.onDateChange, onToggle ) }
-						/>
+						<div className="woocommerce-calendar__react-dates">
+							<DayPickerSingleDateController
+								date={ date }
+								phrases={ phrases }
+								hideKeyboardShortcutsPanel
+								noBorder
+								focused={ true }
+								firstDayOfWeek={ Number( wcSettings.date.dow ) }
+								onDateChange={ partial( this.onDateChange, onToggle ) }
+							/>
+						</div>
 					) }
 				/>
 			</Fragment>
