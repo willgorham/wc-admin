@@ -50,7 +50,6 @@ const MyDateRange =  withState( {
 					onUpdate={ onDatePickerUpdate }
 					dateFormat={ dateFormat }
 					invalidDays="none"
-					label="hello world"
 					onUpdate={ onDatePickerUpdate }
 					invalidDays="future"
 				/>

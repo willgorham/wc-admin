@@ -20,6 +20,7 @@ import { toMoment } from '@woocommerce/date';
 import { getOutsideRange } from './utils';
 import { H, Section } from '../section';
 import PropTypes from 'prop-types';
+import { withViewportMatch } from '@wordpress/viewport';
 
 class DatePicker extends Component {
 	constructor( props ) {
@@ -66,7 +67,7 @@ class DatePicker extends Component {
 	}
 
 	render() {
-		const { date, text, dateFormat, label, error, invalidDays } = this.props;
+		const { date, text, dateFormat, label, error, invalidDays, isViewportSmall } = this.props;
 		const isOutsideRange = getOutsideRange( invalidDays );
 		return (
 			<Fragment>
@@ -105,6 +106,7 @@ class DatePicker extends Component {
 									firstDayOfWeek={ Number( wcSettings.date.dow ) }
 									onDateChange={ partial( this.onDateChange, onToggle ) }
 									isOutsideRange={ isOutsideRange }
+									daySize={ isViewportSmall ? 37 : undefined }
 								/>
 							</div>
 						</Section>
@@ -150,4 +152,6 @@ DatePicker.propTypes = {
 	label: PropTypes.string,
 };
 
-export default DatePicker;
+export default withViewportMatch( {
+	isViewportSmall: '< small',
+} )( DatePicker );
