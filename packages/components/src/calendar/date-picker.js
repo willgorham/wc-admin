@@ -5,7 +5,7 @@
 import 'core-js/fn/object/assign';
 import 'core-js/fn/array/from';
 import { __, sprintf } from '@wordpress/i18n';
-import { Component, Fragment } from '@wordpress/element';
+import { Component } from '@wordpress/element';
 import { DayPickerSingleDateController } from 'react-dates';
 import { Dropdown } from '@wordpress/components';
 import { partial } from 'lodash';
@@ -56,8 +56,7 @@ class DatePicker extends Component {
 		const value = event.target.value;
 		const { dateFormat } = this.props;
 		const date = toMoment( dateFormat, value );
-		// @TODO: add validation
-		const error = date ? null : 'Invalid date';
+		const error = date ? null : __( 'Invalid date', 'wc-admin' );
 
 		this.props.onUpdate( {
 			date,
@@ -70,49 +69,47 @@ class DatePicker extends Component {
 		const { date, text, dateFormat, label, error, invalidDays, isViewportSmall } = this.props;
 		const isOutsideRange = getOutsideRange( invalidDays );
 		return (
-			<Fragment>
-				<Dropdown
-					position="bottom"
-					focusOnMount={ false }
-					renderToggle={ ( { isOpen, onToggle } ) => (
-						<DateInput
-							value={ text }
-							onChange={ this.onInputChange }
-							dateFormat={ dateFormat }
-							label={ label }
-							error={ error }
-							describedBy={ sprintf(
-								__( 'Date input describing a selected date in format %s', 'wc-admin' ),
-								dateFormat
-							) }
-							onFocus={ partial( this.handleFocus, isOpen, onToggle ) }
-							aria-expanded={ isOpen }
-							focusOnMount={ false }
-							onKeyDown={ partial( this.handleKeyDown, isOpen, onToggle ) }
-							errorPosition="top center"
-						/>
-					) }
-					renderContent={ ( { onToggle } ) => (
-						<Section component={ false }>
-							<H className="woocommerce-calendar__date-picker-title">
-								{ __( 'select a date', 'wc-admin' ) }
-							</H>
-							<div className="woocommerce-calendar__react-dates">
-								<DayPickerSingleDateController
-									date={ date }
-									phrases={ phrases }
-									hideKeyboardShortcutsPanel
-									noBorder
-									firstDayOfWeek={ Number( wcSettings.date.dow ) }
-									onDateChange={ partial( this.onDateChange, onToggle ) }
-									isOutsideRange={ isOutsideRange }
-									daySize={ isViewportSmall ? 37 : undefined }
-								/>
-							</div>
-						</Section>
-					) }
-				/>
-			</Fragment>
+			<Dropdown
+				position="bottom center"
+				focusOnMount={ false }
+				renderToggle={ ( { isOpen, onToggle } ) => (
+					<DateInput
+						value={ text }
+						onChange={ this.onInputChange }
+						dateFormat={ dateFormat }
+						label={ label }
+						error={ error }
+						describedBy={ sprintf(
+							__( 'Date input describing a selected date in format %s', 'wc-admin' ),
+							dateFormat
+						) }
+						onFocus={ partial( this.handleFocus, isOpen, onToggle ) }
+						aria-expanded={ isOpen }
+						focusOnMount={ false }
+						onKeyDown={ partial( this.handleKeyDown, isOpen, onToggle ) }
+						errorPosition="top center"
+					/>
+				) }
+				renderContent={ ( { onToggle } ) => (
+					<Section component={ false }>
+						<H className="woocommerce-calendar__date-picker-title">
+							{ __( 'select a date', 'wc-admin' ) }
+						</H>
+						<div className="woocommerce-calendar__react-dates">
+							<DayPickerSingleDateController
+								date={ date }
+								phrases={ phrases }
+								hideKeyboardShortcutsPanel
+								noBorder
+								firstDayOfWeek={ Number( wcSettings.date.dow ) }
+								onDateChange={ partial( this.onDateChange, onToggle ) }
+								isOutsideRange={ isOutsideRange }
+								daySize={ isViewportSmall ? 37 : undefined }
+							/>
+						</div>
+					</Section>
+				) }
+			/>
 		);
 	}
 }
